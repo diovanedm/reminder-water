@@ -1,13 +1,18 @@
+"use client"
+
 import Image from 'next/image'
 import Avatar from '@/assets/avatar.svg'
 import Wave from '@/assets/wave.svg'
 import Water from '@/assets/water.svg'
-import Slider from '@/components/Slider'
 import { ChevronRightIcon } from '@radix-ui/react-icons'
+import { Slider } from '@/components/Slider'
+import { useState } from 'react'
 
 export default function Home() {
-  return (
+  const [dailyGoal, setDailyGoal] = useState(1500)
+  const [quantityPerMinutes, setQuantityPerMinutes] = useState(1500)
 
+  return (
     <div className='flex justify-center items-center min-h-screen'>
       <div>
         <header className='pb-20'>
@@ -51,27 +56,30 @@ export default function Home() {
           </div>
 
           <div className='flex flex-col gap-10 items-center'>
-            <div>
-              <div className='flex justify-between pb-1'>
-                <p className='text-blue-300 text-base font-medium'>Meta diária</p>
-                <p className='text-gray-150 text-xs font-medium'>3000ml</p>
-              </div>
+            <Slider.Root>
+              <Slider.Info title='Meta diária' info={`${dailyGoal} ml`} />
 
-              <Slider />
-            </div>
+              <Slider.Content
+                onValueChange={(value) => setDailyGoal(value[0])}
+                defaultValue={[dailyGoal]}
+                max={3000}
+                step={1}
+              />
+            </Slider.Root>
 
-            <div>
-              <div className='flex justify-between pb-1'>
-                <p className='text-blue-300 text-base font-medium'>Quantidade por timer</p>
-                <p className='text-gray-150 text-xs font-medium'>3000ml</p>
-              </div>
-
-              <Slider />
-            </div>
+            <Slider.Root>
+              <Slider.Info title='Quantidade por timer' info={`${quantityPerMinutes} ml`} />
+              <Slider.Content
+                onValueChange={(value) => setQuantityPerMinutes(value[0])}
+                defaultValue={[quantityPerMinutes]}
+                max={3000}
+                step={1}
+              />
+            </Slider.Root>
 
             <div className='flex items-center gap-3'>
               <div className='flex items-center gap-1'>
-                <div className='bg-gray-400 p-4 rounded-xl  border-[1px] border-gray-200'>
+                <div className='bg-gray-400 p-4 rounded-xl  border-[1px] border-gray-200 hover:border-blue-300'>
                   <p className='text-gray-100 text-3xl'>00</p>
                 </div>
                 <p className='text-gray-200 text-base'>h</p>
@@ -80,7 +88,7 @@ export default function Home() {
               <p className='text-gray-100  text-3xl'>:</p>
 
               <div className='flex items-center gap-1'>
-                <div className='bg-gray-400 p-4 rounded-xl  border-[1px] border-gray-200'>
+                <div className='bg-gray-400 p-4 rounded-xl  border-[1px] border-gray-200 hover:border-blue-300'>
                   <p className='text-gray-100 text-3xl'>00</p>
                 </div>
                 <p className='text-gray-200 text-base'>m</p>
