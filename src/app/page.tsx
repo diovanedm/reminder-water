@@ -27,7 +27,7 @@ export default function Home() {
 
     setTimeout(() => {
       showDialog(true)
-    }, 1000);
+    }, timeInMilleseconds);
   }
 
 
