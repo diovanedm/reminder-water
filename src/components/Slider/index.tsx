@@ -1,4 +1,4 @@
-import SliderRoot from "./SliderRoot";
+import { SliderRoot } from "./SliderRoot";
 import { SliderContent } from "./SliderContent";
 import { SliderInfo } from "./SliderInfo";
 

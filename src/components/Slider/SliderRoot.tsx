@@ -6,8 +6,10 @@ interface SliderRootProps {
 }
 
 
-export default ({ children }: SliderRootProps) => (
-    <div className="w-80">
-        {children}
-    </div>
-);
+export function SliderRoot({ children }: SliderRootProps) {
+    return (
+        <div className="w-80">
+            {children}
+        </div>
+    )
+};
